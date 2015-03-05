@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		261043FD1AA820C10029ECA0 /* FadeSeque.m in Sources */ = {isa = PBXBuildFile; fileRef = 261043FC1AA820C10029ECA0 /* FadeSeque.m */; };
+		261044011AA840C40029ECA0 /* Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 261044001AA840C40029ECA0 /* Authentication.m */; };
 		2F0A4D451AA289F0001C7E36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A4D441AA289F0001C7E36 /* main.m */; };
 		2F0A4D481AA289F0001C7E36 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A4D471AA289F0001C7E36 /* AppDelegate.m */; };
 		2F0A4D4B1AA289F0001C7E36 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A4D4A1AA289F0001C7E36 /* FirstViewController.m */; };
@@ -17,7 +19,6 @@
 		2F0A4D621AA289F0001C7E36 /* DeviseAuthTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A4D611AA289F0001C7E36 /* DeviseAuthTests.m */; };
 		2F0A4D6D1AA28A8C001C7E36 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A4D6C1AA28A8C001C7E36 /* SignInViewController.m */; };
 		2F0A4D711AA28F16001C7E36 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A4D701AA28F16001C7E36 /* User.m */; };
-		2F0A4D761AA295DE001C7E36 /* StartUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A4D751AA295DE001C7E36 /* StartUpViewController.m */; };
 		2F0A4D791AA296C5001C7E36 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A4D781AA296C5001C7E36 /* SignUpViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		261043FB1AA820C10029ECA0 /* FadeSeque.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeSeque.h; sourceTree = "<group>"; };
+		261043FC1AA820C10029ECA0 /* FadeSeque.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeSeque.m; sourceTree = "<group>"; };
+		261043FF1AA840C40029ECA0 /* Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Authentication.h; sourceTree = "<group>"; };
+		261044001AA840C40029ECA0 /* Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Authentication.m; sourceTree = "<group>"; };
 		2F0A4D3F1AA289F0001C7E36 /* DeviseAuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviseAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F0A4D431AA289F0001C7E36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F0A4D441AA289F0001C7E36 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,8 +56,6 @@
 		2F0A4D6C1AA28A8C001C7E36 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		2F0A4D6F1AA28F16001C7E36 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		2F0A4D701AA28F16001C7E36 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		2F0A4D741AA295DE001C7E36 /* StartUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartUpViewController.h; sourceTree = "<group>"; };
-		2F0A4D751AA295DE001C7E36 /* StartUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartUpViewController.m; sourceTree = "<group>"; };
 		2F0A4D771AA296C5001C7E36 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		2F0A4D781AA296C5001C7E36 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +78,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		261043FA1AA820550029ECA0 /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				261043FB1AA820C10029ECA0 /* FadeSeque.h */,
+				261043FC1AA820C10029ECA0 /* FadeSeque.m */,
+			);
+			path = Segues;
+			sourceTree = "<group>";
+		};
+		261043FE1AA840A60029ECA0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				261043FF1AA840C40029ECA0 /* Authentication.h */,
+				261044001AA840C40029ECA0 /* Authentication.m */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		2F0A4D361AA289F0001C7E36 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +117,8 @@
 		2F0A4D411AA289F0001C7E36 /* DeviseAuth */ = {
 			isa = PBXGroup;
 			children = (
+				261043FE1AA840A60029ECA0 /* Services */,
+				261043FA1AA820550029ECA0 /* Segues */,
 				2F0A4D721AA29265001C7E36 /* Controllers */,
 				2F0A4D6E1AA28EFA001C7E36 /* Models */,
 				2F0A4D461AA289F0001C7E36 /* AppDelegate.h */,
@@ -158,8 +181,6 @@
 		2F0A4D731AA295B1001C7E36 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				2F0A4D741AA295DE001C7E36 /* StartUpViewController.h */,
-				2F0A4D751AA295DE001C7E36 /* StartUpViewController.m */,
 				2F0A4D6B1AA28A8C001C7E36 /* SignInViewController.h */,
 				2F0A4D6C1AA28A8C001C7E36 /* SignInViewController.m */,
 				2F0A4D771AA296C5001C7E36 /* SignUpViewController.h */,
@@ -269,12 +290,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F0A4D6D1AA28A8C001C7E36 /* SignInViewController.m in Sources */,
+				261043FD1AA820C10029ECA0 /* FadeSeque.m in Sources */,
 				2F0A4D4E1AA289F0001C7E36 /* SecondViewController.m in Sources */,
-				2F0A4D761AA295DE001C7E36 /* StartUpViewController.m in Sources */,
 				2F0A4D711AA28F16001C7E36 /* User.m in Sources */,
 				2F0A4D481AA289F0001C7E36 /* AppDelegate.m in Sources */,
 				2F0A4D4B1AA289F0001C7E36 /* FirstViewController.m in Sources */,
 				2F0A4D791AA296C5001C7E36 /* SignUpViewController.m in Sources */,
+				261044011AA840C40029ECA0 /* Authentication.m in Sources */,
 				2F0A4D451AA289F0001C7E36 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,6 +488,7 @@
 				2F0A4D671AA289F0001C7E36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2F0A4D681AA289F0001C7E36 /* Build configuration list for PBXNativeTarget "DeviseAuthTests" */ = {
 			isa = XCConfigurationList;
@@ -474,6 +497,7 @@
 				2F0A4D6A1AA289F0001C7E36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

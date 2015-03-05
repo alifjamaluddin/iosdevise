@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="pv5-gH-8gy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14D87h" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
@@ -47,7 +47,7 @@
         <!--Sign In-->
         <scene sceneID="wIr-Hp-T21">
             <objects>
-                <viewController id="pv5-gH-8gy" customClass="SignInViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInController" id="pv5-gH-8gy" customClass="SignInViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="1g2-G2-ZfU"/>
                         <viewControllerLayoutGuide type="bottom" id="h0Y-sk-Pb9"/>
@@ -60,11 +60,17 @@
                                 <rect key="frame" x="17" y="106" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pv5-gH-8gy" id="IOW-ci-6vT"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gm5-fg-fTe">
                                 <rect key="frame" x="16" y="159" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pv5-gH-8gy" id="q6s-fL-ZtK"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3wm-at-AOa">
                                 <rect key="frame" x="16" y="220" width="288" height="30"/>
@@ -72,8 +78,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="signIn" destination="pv5-gH-8gy" eventType="touchUpInside" id="zLW-eO-TgO"/>
-                                    <action selector="signIn:" destination="pv5-gH-8gy" eventType="touchUpInside" id="cN7-19-c89"/>
+                                    <action selector="signIn:" destination="pv5-gH-8gy" eventType="touchUpInside" id="LTU-9R-z61"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAh-2M-WXV">
@@ -81,6 +86,9 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="1Sq-2K-dtU" kind="custom" customClass="FadeSeque" id="dlS-OG-mIm"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pkm-hu-rhX">
                                 <rect key="frame" x="187" y="276" width="117" height="30"/>
@@ -88,7 +96,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="resetPassword:" destination="pv5-gH-8gy" eventType="touchUpInside" id="aTi-Px-I0J"/>
+                                    <action selector="resetPassword:" destination="pv5-gH-8gy" eventType="touchUpInside" id="WnP-vG-Jmy"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -96,24 +104,21 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sign In" id="341-AG-ccV"/>
                     <connections>
-                        <outlet property="emailField" destination="2eT-Ba-WuW" id="LBA-Zb-N2T"/>
-                        <outlet property="emailTextField" destination="2eT-Ba-WuW" id="jUd-WZ-OLj"/>
-                        <outlet property="forgotPasswordButton" destination="Pkm-hu-rhX" id="hfq-kw-bzs"/>
-                        <outlet property="passwordField" destination="Gm5-fg-fTe" id="IhE-eb-2Js"/>
-                        <outlet property="passwordTextField" destination="Gm5-fg-fTe" id="ll7-oE-lh0"/>
-                        <outlet property="resetPasswordButton" destination="Pkm-hu-rhX" id="fbO-ID-BUd"/>
-                        <outlet property="signInButton" destination="3wm-at-AOa" id="wEi-bI-UUo"/>
+                        <outlet property="emailTextField" destination="2eT-Ba-WuW" id="a48-mr-tHf"/>
+                        <outlet property="passwordTextField" destination="Gm5-fg-fTe" id="LWG-le-07B"/>
+                        <outlet property="resetPasswordButton" destination="Pkm-hu-rhX" id="kiE-0h-V21"/>
+                        <outlet property="signInButton" destination="3wm-at-AOa" id="IiM-Ye-Yu1"/>
                         <outlet property="signUpButton" destination="dAh-2M-WXV" id="OFn-tR-Yft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ehS-NN-Wqf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-826" y="0.0"/>
+            <point key="canvasLocation" x="-80" y="972"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="Lwj-wg-Lkl">
             <objects>
-                <viewController id="1Sq-2K-dtU" customClass="SignUpViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpController" id="1Sq-2K-dtU" customClass="SignUpViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tme-v5-Cck"/>
                         <viewControllerLayoutGuide type="bottom" id="KqN-kk-5oC"/>
@@ -126,11 +131,17 @@
                                 <rect key="frame" x="16" y="47" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="1Sq-2K-dtU" id="tLi-Vk-bws"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="09y-ai-X2n">
                                 <rect key="frame" x="16" y="103" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="1Sq-2K-dtU" id="6zX-ry-4Wh"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wZn-4H-m0E">
                                 <rect key="frame" x="14" y="180" width="288" height="30"/>
@@ -146,20 +157,24 @@
                                 <state key="normal" title="Sign In">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="pv5-gH-8gy" kind="custom" customClass="FadeSeque" id="tdJ-8V-zSE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="8ce-sN-hcu"/>
                     <connections>
-                        <outlet property="emailTextField" destination="vOr-np-cJC" id="agh-kt-4au"/>
-                        <outlet property="passwordTextField" destination="09y-ai-X2n" id="e2C-rj-ILf"/>
+                        <outlet property="emailTextField" destination="vOr-np-cJC" id="WUQ-vP-SmV"/>
+                        <outlet property="passwordTextField" destination="09y-ai-X2n" id="2I3-X3-K2f"/>
                         <outlet property="signInButton" destination="IAm-er-YHx" id="fid-SK-9Ts"/>
-                        <outlet property="signUpButton" destination="wZn-4H-m0E" id="dIw-AN-Lgv"/>
+                        <outlet property="signUpButton" destination="wZn-4H-m0E" id="TK1-6D-cDR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yyy-wL-Inu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-826" y="651"/>
+            <point key="canvasLocation" x="-724" y="1008"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
@@ -204,7 +219,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabController" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -218,7 +233,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
+            <point key="canvasLocation" x="-384" y="0.0"/>
         </scene>
         <!--First-->
         <scene sceneID="K1T-KR-R1K">

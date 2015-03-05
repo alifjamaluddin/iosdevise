@@ -14,8 +14,25 @@
 @end
 
 @implementation SignInViewController
+
+@synthesize user;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    BOOL _resetPassword;
+    self =[super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        self.user = [[User alloc] init];
+    }
+    return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.user = [[User alloc] init];
+    }
+    return self;
 }
 
 - (void)viewDidLoad
@@ -38,46 +55,75 @@
     self.signInButton.enabled = [self validInput];
     
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//
+//-(UIStatusBarStyle)preferredStatusBarStyle{
+//    return UIStatusBarStyleLightContent;
+//}
+
 
 
 //------------------------------------------------
 
-
-
 - (BOOL)validInput
 {
-//    return [self.emailTextField.text length]>0 && [self.passwordTextField.text length]>5 && [self.emailTextField.text isValidEMail];
-    return true;
+    return [self.user hasValidEmail] && [self.user hasValidPassword];
 }
 
 
 //------------------------------------------------
 
 
-
 #pragma mark -
+#pragma mark IBActions
+
 
 - (IBAction)signIn:(id)sender {
-    [self.emailTextField resignFirstResponder];
-    [self.passwordTextField resignFirstResponder];
+    [self syncUserDataFromInput:nil];
+    NSError *error;
+    NSURL *url = [NSURL URLWithString:@"http://localhost:3000/api/v1/users/sign_in.json"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
     
-    User *user = [[User alloc] init];
-    user.password = self.passwordTextField.text;
-    user.email = self.emailTextField.text;
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    if( ![user hasValidEmail] )
-    {
-        [[UIApplication sharedApplication] showAlertWithTitle:@"Notice" message:@"Email is not valid."];
-        
-    }
-    else if( ![user hasValidPassword] )
-    {
-        [[UIApplication sharedApplication] showAlertWithTitle:@"Notice" message:@"Password must contain 6 - 20 characters."];
-    }
-    else
-    {
-        [HAKAuthentication authenticate:user];
-    }
+    [request setHTTPMethod:@"POST"];
+    
+    NSDictionary *mapData = @{
+                              @"user": @{
+                                      @"email": self.user.email,
+                                      @"password": self.user.password
+                                      }
+                              };
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:mapData options:0 error:&error];
+    [request setHTTPBody:postData];
+    
+    NSURLSession *urlSession = [NSURLSession sharedSession];
+    NSURLSessionTask *loginTask = [urlSession dataTaskWithRequest:request
+                  completionHandler:^(NSData *data, NSURLResponse *response, NSError *error ){
+                      if (error != nil) {
+                          NSLog(@"%s", [error.localizedDescription UTF8String]);
+                          //TODO: alert view with error
+                          return;
+                      }
+                      
+                      NSError *jsonError;
+                      NSDictionary *jsonResults = [NSJSONSerialization JSONObjectWithData:data
+                                                                                  options:0
+                                                                                    error:&jsonError];
+                      NSLog(@"%@", jsonResults);
+                      
+                      if ( jsonResults[@"success"]) {
+                          NSString *usertoken = jsonResults[@"token"];
+                      } else {
+                          //check errors
+                      }
+    }];
+    
+    [loginTask resume];
 }
 
 
@@ -85,101 +131,17 @@
 
 
 - (IBAction)resetPassword:(id)sender {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Need Password Help?"
-                                                    message:@"We will email you instructions explaining how to reset it!"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Cancel"
-                                          otherButtonTitles:@"Send", nil];
-    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alert textFieldAtIndex:0].placeholder = @"your email address...";
-    [alert textFieldAtIndex:0].clearsOnBeginEditing = NO;
-    if( self.emailTextField.text ){
-        [alert textFieldAtIndex:0].text = self.emailTextField.text;
-    }
-    [alert show];
-}
 
-
-//------------------------------------------------
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-//------------------------------------------------
-
-- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView
-{
-    return [[alertView textFieldAtIndex:0].text isValidEMail];
 }
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if( buttonIndex == 1  ){
-        NSDictionary *params = @{@"email":[alertView textFieldAtIndex:0].text};
-        
-        [[HAKApiClient sharedClient] putPath:@"forgot_password.json"
-                                  parameters:params
-                                     success:^(AFHTTPRequestOperation *operation, id JSON){
-                                         NSLog(@"%@",JSON);
-                                         [[UIApplication sharedApplication] showAlertWithTitle:@"Notice" message:@"Password reset, check your email for instructions."];
-                                     }
-                                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                                         [HAKAuthentication setPassword:nil];
-                                         NSLog(@"%@",error.localizedDescription);
-                                         
-                                         id JSON = nil;
-                                         NSString *server_error = [error.userInfo objectForKey: NSLocalizedRecoverySuggestionErrorKey];
-                                         if( server_error){
-                                             NSLog(@"%@",server_error);
-                                             NSError *_error =nil;
-                                             NSData *data = [server_error dataUsingEncoding:NSUTF8StringEncoding];
-                                             JSON = [NSJSONSerialization JSONObjectWithData:data
-                                                                                    options:0
-                                                                                      error:&_error];
-                                         }
-                                         NSLog(@"%@",JSON);
-                                         NSString *msg = [[JSON objectForKey:@"error"] objectForKey:@"message"];
-                                         if( !msg ){
-                                             msg = error.localizedDescription;
-                                         }
-                                         [[UIApplication sharedApplication] showAlertWithTitle:@"Notice" message:msg];
-                                     }];
-        
-    }
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 #pragma mark -
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
--(UIStatusBarStyle)preferredStatusBarStyle{
-    return UIStatusBarStyleLightContent;
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+#pragma mark TextField
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+    [self syncUserDataFromInput:textField];
     if( [self validInput] ){
         self.signInButton.enabled = YES;
     }
@@ -191,6 +153,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [self syncUserDataFromInput:textField];
     [textField resignFirstResponder];
     if( [self validInput] ){
         self.signInButton.enabled = YES;
@@ -205,6 +168,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+    [self syncUserDataFromInput:textField];
     if( [self validInput] ){
         self.signInButton.enabled = YES;
     }
@@ -212,4 +176,15 @@
 }
 
 
+- (void) syncUserDataFromInput:(UITextField *)textField
+{
+    if (!textField || textField == self.emailTextField) {
+        self.user.email = self.emailTextField.text;
+    }
+    
+    if (!textField || textField == self.passwordTextField) {
+        self.user.password = self.passwordTextField.text;
+    }
+
+}
 @end
