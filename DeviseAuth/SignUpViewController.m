@@ -106,9 +106,11 @@
                                                     NSLog(@"%@", jsonResults);
                                                     
                                                     if ( jsonResults[@"success"]) {
-                                                        //TODO: redrect to auth
+                                                        [[NSNotificationCenter defaultCenter] postNotificationName:@"UserSignUpNotification"
+                                                                                                            object:nil
+                                                                                                          userInfo: mapData[@"user"]];
                                                     } else {
-                                                        //check for errors
+                                                        //check for errors and alert
                                                     }
                                                 }];
     

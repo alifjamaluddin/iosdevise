@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		261043FD1AA820C10029ECA0 /* FadeSeque.m in Sources */ = {isa = PBXBuildFile; fileRef = 261043FC1AA820C10029ECA0 /* FadeSeque.m */; };
 		261044011AA840C40029ECA0 /* Authentication.m in Sources */ = {isa = PBXBuildFile; fileRef = 261044001AA840C40029ECA0 /* Authentication.m */; };
+		262C6DB61AA96CF800708D44 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 262C6DB51AA96CF800708D44 /* Security.framework */; };
+		262C6DB91AA96DE900708D44 /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 262C6DB81AA96DE900708D44 /* UICKeyChainStore.m */; };
 		2F0A4D451AA289F0001C7E36 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A4D441AA289F0001C7E36 /* main.m */; };
 		2F0A4D481AA289F0001C7E36 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A4D471AA289F0001C7E36 /* AppDelegate.m */; };
 		2F0A4D4B1AA289F0001C7E36 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A4D4A1AA289F0001C7E36 /* FirstViewController.m */; };
@@ -37,6 +39,9 @@
 		261043FC1AA820C10029ECA0 /* FadeSeque.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FadeSeque.m; sourceTree = "<group>"; };
 		261043FF1AA840C40029ECA0 /* Authentication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Authentication.h; sourceTree = "<group>"; };
 		261044001AA840C40029ECA0 /* Authentication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Authentication.m; sourceTree = "<group>"; };
+		262C6DB51AA96CF800708D44 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		262C6DB71AA96DE900708D44 /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICKeyChainStore.h; sourceTree = "<group>"; };
+		262C6DB81AA96DE900708D44 /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
 		2F0A4D3F1AA289F0001C7E36 /* DeviseAuth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeviseAuth.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F0A4D431AA289F0001C7E36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F0A4D441AA289F0001C7E36 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -65,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				262C6DB61AA96CF800708D44 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +96,8 @@
 		261043FE1AA840A60029ECA0 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				262C6DB71AA96DE900708D44 /* UICKeyChainStore.h */,
+				262C6DB81AA96DE900708D44 /* UICKeyChainStore.m */,
 				261043FF1AA840C40029ECA0 /* Authentication.h */,
 				261044001AA840C40029ECA0 /* Authentication.m */,
 			);
@@ -99,6 +107,7 @@
 		2F0A4D361AA289F0001C7E36 = {
 			isa = PBXGroup;
 			children = (
+				262C6DB51AA96CF800708D44 /* Security.framework */,
 				2F0A4D411AA289F0001C7E36 /* DeviseAuth */,
 				2F0A4D5E1AA289F0001C7E36 /* DeviseAuthTests */,
 				2F0A4D401AA289F0001C7E36 /* Products */,
@@ -292,6 +301,7 @@
 				2F0A4D6D1AA28A8C001C7E36 /* SignInViewController.m in Sources */,
 				261043FD1AA820C10029ECA0 /* FadeSeque.m in Sources */,
 				2F0A4D4E1AA289F0001C7E36 /* SecondViewController.m in Sources */,
+				262C6DB91AA96DE900708D44 /* UICKeyChainStore.m in Sources */,
 				2F0A4D711AA28F16001C7E36 /* User.m in Sources */,
 				2F0A4D481AA289F0001C7E36 /* AppDelegate.m in Sources */,
 				2F0A4D4B1AA289F0001C7E36 /* FirstViewController.m in Sources */,

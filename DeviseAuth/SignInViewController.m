@@ -118,8 +118,11 @@
                       
                       if ( jsonResults[@"success"]) {
                           NSString *usertoken = jsonResults[@"token"];
+                          [[NSNotificationCenter defaultCenter] postNotificationName:@"UserSignInNotification"
+                                                                              object:nil
+                                                                            userInfo:@{@"userToken": usertoken}];
                       } else {
-                          //check errors
+                          //check errors show alert
                       }
     }];
     
